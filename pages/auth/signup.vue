@@ -1,3 +1,19 @@
+<script setup>
+definePageMeta({
+    layout: "custom"
+})
+const { registerUser } = useFirebaseAuth() // auto-imported
+
+const creds = reactive({
+    email: "",
+    password: ""
+})
+
+async function handleRegistration() {
+    await registerUser(creds.email, creds.password)
+}
+</script>
+
 <template>
     <section class="h-[100%] w-[50%]">
         <div class="flex flex-col justify-start align-middle">
@@ -21,7 +37,7 @@
         </div>
         <div class="flex flex-col">
             <form class="space-y-6 w-[500px] flex flex-col justify-center mx-auto" action="#" method="POST"
-                @submit.prevent="registerUser">
+                @submit.prevent="handleRegistration">
                 <div>
                     <div class="mt-2">
                         <input placeholder="Email Address" name="email" type="email" autocomplete="email"
@@ -53,32 +69,4 @@
         </div>
     </section>
 </template>
-
-<script setup>
-definePageMeta({
-    layout: "custom"
-})
-
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-
-const creds = reactive({
-    email: "",
-    password: ""
-})
-
-const nuxtApp = useNuxtApp()
-async function registerUser() {
-    try {
-        const { user } = await createUserWithEmailAndPassword(
-            nuxtApp.$auth,
-            creds.email,
-            creds.password
-        )
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-</script>
-
 <style scoped></style>
