@@ -2,8 +2,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const config = useRuntimeConfig();
-
   const firebaseConfig = {
     apiKey: "AIzaSyBbbSs9WUqvKqkmZMbWNnNkHnrxAp4ootc",
     authDomain: "baitna-dbedb.firebaseapp.com",
