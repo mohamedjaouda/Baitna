@@ -75,9 +75,7 @@ async function registerUser() {
             creds.password
         )
     } catch (error) {
-        if (error instanceof Error) {
-            // handle error
-        }
+        console.error(error)
     }
 }
 
