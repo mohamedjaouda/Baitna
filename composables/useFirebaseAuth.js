@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 export default function () {
   const { $auth } = useNuxtApp();
 
-  const user = useState("fb_user", () => null);
+  const user = useState("user", () => null);
 
   const registerUser = async (email, password) => {
     try {
@@ -18,9 +18,7 @@ export default function () {
         return true;
       }
     } catch (error) {
-      if (error instanceof Error) {
-        throw error;
-      }
+      if (error) throw error;
       return false;
     }
     return false;

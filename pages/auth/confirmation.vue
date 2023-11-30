@@ -1,7 +1,7 @@
 <template>
-    <RealEstateCard />
-    <RealEstateCard />
-    <RealEstateCard />
+    <div>
+
+    </div>
 </template>
 
 <script setup>
