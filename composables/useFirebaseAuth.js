@@ -1,8 +1,11 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 
 export default function () {
   const { $auth } = useNuxtApp();
-
+  const token = useCookie("token");
   const user = useState("user", () => null);
 
   const registerUser = async (email, password) => {
@@ -14,7 +17,8 @@ export default function () {
       );
       if (userCreds) {
         user.value = userCreds.user;
-        console.log("created");
+        token.value = user.value.accessToken || "";
+        navigateTo(`/auth/${email}`);
         return true;
       }
     } catch (error) {
